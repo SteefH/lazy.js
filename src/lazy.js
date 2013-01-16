@@ -9,7 +9,7 @@
 }(this, function () {
     var log;
     function isFunction (x) {
-        return typeof(x) === 'function';
+        return typeof x === 'function';
     }
     if (console && isFunction(console.log)) {
         log = console.log.bind(console);
@@ -25,7 +25,7 @@
             initFunc = obj[initializeName];
             wrappedMethods = {};
             
-            function unwrapMethods () {
+            function unwrapMethods (obj) {
                 if (Lazy.debug) {
                      log(['unwrapping methods', wrappedMethods, obj]);
                 }
@@ -47,11 +47,9 @@
                     if (Lazy.debug) {
                         log(['calling wrapped method ' + wrappedMethodName, obj]);
                     }
-                    var result;
-                    unwrapMethods();
+                    unwrapMethods(this);
                     initFunc.apply(this);
-                    result = method.apply(this, arguments);
-                    return result;
+                    return method.apply(this, arguments);
                 };
             }
             
