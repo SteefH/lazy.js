@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2013, Stefan van der Haven
+ *
+ * Licensed under a BSD 3-Clause License, full text at
+ * https://raw.github.com/SteefH/lazy.js/master/LICENSE
+ */
+
 (function (root, factory) {
     if (typeof exports === 'object') {
         module.exports = factory();
@@ -7,6 +14,7 @@
         root.Lazy = factory();
     }
 }(this, function () {
+    "use strict";
     return {
         lazy: function (initializeName, obj) {
             var propertyName, property, wrappedMethods, initFunc;
